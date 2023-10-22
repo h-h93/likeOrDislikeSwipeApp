@@ -6,24 +6,64 @@
 //
 
 import UIKit
+import Shuffle
 
 class SwipeViewController: UIViewController {
+    
+    var swipeView = SwipeCardViewController()
+    
+    var cardImages = [UIImage]()
+    
+    
+//    var imageViewOne: TinderSwipeView?
+    
+    var divisionParam: CGFloat!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+        //swipeableView.backgroundColor = .blue
+        
+        
+        // initialise swipe gesture recogniser
+        //let rightSwipeGestureRecogniser = UIPanGestureRecognizer(target: self, action: #selector(didSwipe))
+      //  let leftSwipeGestureRecogniser = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe))
+        // configure swipe gesture recogniser
+//        rightSwipeGestureRecogniser.direction = .right
+//        leftSwipeGestureRecogniser.direction = .left
+        
+        // add swipe gesture recogniser to view
+        //swipeableView.addGestureRecognizer(rightSwipeGestureRecogniser)
+        //swipeableView.addGestureRecognizer(leftSwipeGestureRecogniser)
+        
+        divisionParam = (view.frame.size.width/2)/0.61
+        let image = UIImage(named: "hang in there.jpg")
+        cardImages.append(UIImage(named: "hang in there cat.jpg")!)
+        cardImages.append(UIImage(named: "hang in there cat.jpg")!)
+        
+        
+        setupSwipeableView()
+        swipeView.cardImages = cardImages
+        swipeView.swipeableView.reloadData()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setupSwipeableView() {
+        
+        //swipeableView.getCards(images: cardImages)
+        swipeView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(swipeView)
+        //swipeableView.addSubview(imageViewOne)
+        
+        NSLayoutConstraint.activate([
+            swipeView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            swipeView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50),
+            swipeView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
+            swipeView.widthAnchor.constraint(equalToConstant: 300),
+        ])
     }
-    */
+    
+    
+
 
 }

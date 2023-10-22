@@ -6,24 +6,71 @@
 //
 
 import UIKit
+import Shuffle
 
-class SwipeCardViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+class SwipeCardViewController: UIView, SwipeCardStackDataSource, SwipeCardStackDelegate {
+    
+    var cardImages = [UIImage]()
+    var swipeableView = SwipeCardStack()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
+    
+    func getCards(images: [UIImage]) {
+        cardImages = images
+    }
+    
+    func setupView() {
+        swipeableView = SwipeCardStack()
+        swipeableView.translatesAutoresizingMaskIntoConstraints = false
+        swipeableView.dataSource = self
+        addSubview(swipeableView)
+        NSLayoutConstraint.activate([
+            swipeableView.topAnchor.constraint(equalTo: topAnchor),
+            swipeableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            swipeableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            swipeableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        
+    }
+    
+    func card(fromImage image: UIImage) -> SwipeCard {
+      let card = SwipeCard()
+      card.swipeDirections = [.left, .right]
+      card.content = UIImageView(image: image)
+      
+      let leftOverlay = UIView()
+      leftOverlay.backgroundColor = .green
+      
+      let rightOverlay = UIView()
+      rightOverlay.backgroundColor = .red
+      
+      card.setOverlays([.left: leftOverlay, .right: rightOverlay])
+      
+      return card
+    }
 
+    func cardStack(_ cardStack: SwipeCardStack, cardForIndexAt index: Int) -> SwipeCard {
+        return card(fromImage: cardImages[index])
+    }
+
+    func numberOfCards(in cardStack: SwipeCardStack) -> Int {
+        return cardImages.count
+    }
+    
+    override class var requiresConstraintBasedLayout: Bool {
+        return true
+      }
+    
+    override var intrinsicContentSize: CGSize {
+      //preferred content size, calculate it if some internal state changes
+      return CGSize(width: 300, height: 300)
+    }
 }
