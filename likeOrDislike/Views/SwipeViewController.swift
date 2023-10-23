@@ -38,7 +38,7 @@ class SwipeViewController: UIViewController {
         //swipeableView.addGestureRecognizer(leftSwipeGestureRecogniser)
         
         divisionParam = (view.frame.size.width/2)/0.61
-        let image = UIImage(named: "hang in there.jpg")
+        let image = UIImage(named: "hang in there cat.jpg")
         cardImages.append(UIImage(named: "hang in there cat.jpg")!)
         cardImages.append(UIImage(named: "hang in there cat.jpg")!)
         
