@@ -9,20 +9,16 @@ import UIKit
 import Shuffle
 
 class SwipeViewController: UIViewController {
-    
     var swipeView = SwipeCardViewController()
     
-    var cardImages = [UIImage]()
+    var configData = ConfigFile()
     
-    
-//    var imageViewOne: TinderSwipeView?
-    
-    var divisionParam: CGFloat!
+    //var cardImages = [UIImage]()
 
+    var divisionParam: CGFloat!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
         //swipeableView.backgroundColor = .blue
         
         
@@ -38,13 +34,9 @@ class SwipeViewController: UIViewController {
         //swipeableView.addGestureRecognizer(leftSwipeGestureRecogniser)
         
         divisionParam = (view.frame.size.width/2)/0.61
-        let image = UIImage(named: "hang in there cat.jpg")
-        cardImages.append(UIImage(named: "hang in there cat.jpg")!)
-        cardImages.append(UIImage(named: "hang in there cat.jpg")!)
         
         
         setupSwipeableView()
-        swipeView.cardImages = cardImages
         swipeView.swipeableView.reloadData()
     }
     
@@ -62,8 +54,5 @@ class SwipeViewController: UIViewController {
             swipeView.widthAnchor.constraint(equalToConstant: 300),
         ])
     }
-    
-    
-
 
 }

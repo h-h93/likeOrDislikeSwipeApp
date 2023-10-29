@@ -8,6 +8,15 @@
         "branch" : "master",
         "revision" : "df246b9cd6b8b5e021b23c80706b4a4571785c1b"
       }
+    },
+    {
+      "identity" : "unsplashframework",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/camiletti/UnsplashFramework.git",
+      "state" : {
+        "revision" : "23b141859eadeca9cf3d9dc9809c4d24ca7a0fb3",
+        "version" : "0.4.0"
+      }
     }
   ],
   "version" : 2
